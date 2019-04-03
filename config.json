@@ -1,0 +1,7 @@
+{
+  "packageName": "ZingleApi\\UrlShortner",
+  "invokerPackage": "ZingleApi\\UrlShortner",
+  "srcBasePath": "src",
+  "composerVendorName": "zingle-api",
+  "composerProjectName": "url-shortner"
+}

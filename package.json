@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "build": "openapi-generator generate -i https://raw.githubusercontent.com/Zingle/api-specs/master/specs/url_shortener.yml -g php -c ./config.json"
+  },
+  "dependencies": {
+    "@openapitools/openapi-generator-cli": "^0.0.8-4.0.0-beta2"
+  }
+}
