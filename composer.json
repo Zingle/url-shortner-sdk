@@ -1,5 +1,5 @@
 {
-    "name": "zingle-api/url-shortner",
+    "name": "zingle-api/url-shortner-sdk",
     "description": "Shortens URLs",
     "keywords": [
         "openapitools",
