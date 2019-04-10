@@ -25,7 +25,7 @@ To install the bindings via [Composer](http://getcomposer.org/), add the followi
     }
   ],
   "require": {
-    "zingle-api/url-shortner": "*@dev"
+    "zingle-api/url-shortner-sdk": "*@dev"
   }
 }
 ```
