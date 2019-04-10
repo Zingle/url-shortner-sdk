@@ -21,7 +21,7 @@ To install the bindings via [Composer](http://getcomposer.org/), add the followi
   "repositories": [
     {
       "type": "vcs",
-      "url": "https://github.com/zingle-api/url-shortner-sdk.git"
+      "url": "https://github.com/Zingle/url-shortner-sdk.git"
     }
   ],
   "require": {
