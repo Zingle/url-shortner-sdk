@@ -90,30 +90,30 @@ class V1Api
     /**
      * Operation shorten
      *
-     * @param  \ZingleApi\UrlShortner\Model\UNKNOWN_BASE_TYPE $unknown_base_type unknown_base_type (optional)
+     * @param  \ZingleApi\UrlShortner\Model\ShortenRequest $body body (optional)
      *
      * @throws \ZingleApi\UrlShortner\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \ZingleApi\UrlShortner\Model\ShortUrl|\ZingleApi\UrlShortner\Model\Error
      */
-    public function shorten($unknown_base_type = null)
+    public function shorten($body = null)
     {
-        list($response) = $this->shortenWithHttpInfo($unknown_base_type);
+        list($response) = $this->shortenWithHttpInfo($body);
         return $response;
     }
 
     /**
      * Operation shortenWithHttpInfo
      *
-     * @param  \ZingleApi\UrlShortner\Model\UNKNOWN_BASE_TYPE $unknown_base_type (optional)
+     * @param  \ZingleApi\UrlShortner\Model\ShortenRequest $body (optional)
      *
      * @throws \ZingleApi\UrlShortner\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \ZingleApi\UrlShortner\Model\ShortUrl|\ZingleApi\UrlShortner\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function shortenWithHttpInfo($unknown_base_type = null)
+    public function shortenWithHttpInfo($body = null)
     {
-        $request = $this->shortenRequest($unknown_base_type);
+        $request = $this->shortenRequest($body);
 
         try {
             $options = $this->createHttpClientOption();
@@ -213,14 +213,14 @@ class V1Api
      *
      * 
      *
-     * @param  \ZingleApi\UrlShortner\Model\UNKNOWN_BASE_TYPE $unknown_base_type (optional)
+     * @param  \ZingleApi\UrlShortner\Model\ShortenRequest $body (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function shortenAsync($unknown_base_type = null)
+    public function shortenAsync($body = null)
     {
-        return $this->shortenAsyncWithHttpInfo($unknown_base_type)
+        return $this->shortenAsyncWithHttpInfo($body)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -233,15 +233,15 @@ class V1Api
      *
      * 
      *
-     * @param  \ZingleApi\UrlShortner\Model\UNKNOWN_BASE_TYPE $unknown_base_type (optional)
+     * @param  \ZingleApi\UrlShortner\Model\ShortenRequest $body (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function shortenAsyncWithHttpInfo($unknown_base_type = null)
+    public function shortenAsyncWithHttpInfo($body = null)
     {
         $returnType = '\ZingleApi\UrlShortner\Model\ShortUrl';
-        $request = $this->shortenRequest($unknown_base_type);
+        $request = $this->shortenRequest($body);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -280,12 +280,12 @@ class V1Api
     /**
      * Create request for operation 'shorten'
      *
-     * @param  \ZingleApi\UrlShortner\Model\UNKNOWN_BASE_TYPE $unknown_base_type (optional)
+     * @param  \ZingleApi\UrlShortner\Model\ShortenRequest $body (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function shortenRequest($unknown_base_type = null)
+    protected function shortenRequest($body = null)
     {
 
         $resourcePath = '/v1';
@@ -299,8 +299,8 @@ class V1Api
 
         // body params
         $_tempBody = null;
-        if (isset($unknown_base_type)) {
-            $_tempBody = $unknown_base_type;
+        if (isset($body)) {
+            $_tempBody = $body;
         }
 
         if ($multipart) {
@@ -367,30 +367,30 @@ class V1Api
     /**
      * Operation shortenBulk
      *
-     * @param  \ZingleApi\UrlShortner\Model\UNKNOWN_BASE_TYPE $unknown_base_type unknown_base_type (optional)
+     * @param  \ZingleApi\UrlShortner\Model\BulkShortenRequest $body body (optional)
      *
      * @throws \ZingleApi\UrlShortner\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \ZingleApi\UrlShortner\Model\ShortUrl[]|\ZingleApi\UrlShortner\Model\Error
      */
-    public function shortenBulk($unknown_base_type = null)
+    public function shortenBulk($body = null)
     {
-        list($response) = $this->shortenBulkWithHttpInfo($unknown_base_type);
+        list($response) = $this->shortenBulkWithHttpInfo($body);
         return $response;
     }
 
     /**
      * Operation shortenBulkWithHttpInfo
      *
-     * @param  \ZingleApi\UrlShortner\Model\UNKNOWN_BASE_TYPE $unknown_base_type (optional)
+     * @param  \ZingleApi\UrlShortner\Model\BulkShortenRequest $body (optional)
      *
      * @throws \ZingleApi\UrlShortner\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \ZingleApi\UrlShortner\Model\ShortUrl[]|\ZingleApi\UrlShortner\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function shortenBulkWithHttpInfo($unknown_base_type = null)
+    public function shortenBulkWithHttpInfo($body = null)
     {
-        $request = $this->shortenBulkRequest($unknown_base_type);
+        $request = $this->shortenBulkRequest($body);
 
         try {
             $options = $this->createHttpClientOption();
@@ -490,14 +490,14 @@ class V1Api
      *
      * 
      *
-     * @param  \ZingleApi\UrlShortner\Model\UNKNOWN_BASE_TYPE $unknown_base_type (optional)
+     * @param  \ZingleApi\UrlShortner\Model\BulkShortenRequest $body (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function shortenBulkAsync($unknown_base_type = null)
+    public function shortenBulkAsync($body = null)
     {
-        return $this->shortenBulkAsyncWithHttpInfo($unknown_base_type)
+        return $this->shortenBulkAsyncWithHttpInfo($body)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -510,15 +510,15 @@ class V1Api
      *
      * 
      *
-     * @param  \ZingleApi\UrlShortner\Model\UNKNOWN_BASE_TYPE $unknown_base_type (optional)
+     * @param  \ZingleApi\UrlShortner\Model\BulkShortenRequest $body (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function shortenBulkAsyncWithHttpInfo($unknown_base_type = null)
+    public function shortenBulkAsyncWithHttpInfo($body = null)
     {
         $returnType = '\ZingleApi\UrlShortner\Model\ShortUrl[]';
-        $request = $this->shortenBulkRequest($unknown_base_type);
+        $request = $this->shortenBulkRequest($body);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -557,12 +557,12 @@ class V1Api
     /**
      * Create request for operation 'shortenBulk'
      *
-     * @param  \ZingleApi\UrlShortner\Model\UNKNOWN_BASE_TYPE $unknown_base_type (optional)
+     * @param  \ZingleApi\UrlShortner\Model\BulkShortenRequest $body (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function shortenBulkRequest($unknown_base_type = null)
+    protected function shortenBulkRequest($body = null)
     {
 
         $resourcePath = '/v1/bulk';
@@ -576,8 +576,8 @@ class V1Api
 
         // body params
         $_tempBody = null;
-        if (isset($unknown_base_type)) {
-            $_tempBody = $unknown_base_type;
+        if (isset($body)) {
+            $_tempBody = $body;
         }
 
         if ($multipart) {

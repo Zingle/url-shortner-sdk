@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **shorten**
-> \ZingleApi\UrlShortner\Model\ShortUrl shorten($unknown_base_type)
+> \ZingleApi\UrlShortner\Model\ShortUrl shorten($body)
 
 
 
@@ -26,10 +26,10 @@ $apiInstance = new ZingleApi\UrlShortner\Api\V1Api(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$unknown_base_type = new \ZingleApi\UrlShortner\Model\UNKNOWN_BASE_TYPE(); // \ZingleApi\UrlShortner\Model\UNKNOWN_BASE_TYPE | 
+$body = new \ZingleApi\UrlShortner\Model\ShortenRequest(); // \ZingleApi\UrlShortner\Model\ShortenRequest | 
 
 try {
-    $result = $apiInstance->shorten($unknown_base_type);
+    $result = $apiInstance->shorten($body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling V1Api->shorten: ', $e->getMessage(), PHP_EOL;
@@ -41,7 +41,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **unknown_base_type** | [**\ZingleApi\UrlShortner\Model\UNKNOWN_BASE_TYPE**](../Model/UNKNOWN_BASE_TYPE.md)|  | [optional]
+ **body** | **\ZingleApi\UrlShortner\Model\ShortenRequest**|  | [optional]
 
 ### Return type
 
@@ -59,7 +59,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **shortenBulk**
-> \ZingleApi\UrlShortner\Model\ShortUrl[] shortenBulk($unknown_base_type)
+> \ZingleApi\UrlShortner\Model\ShortUrl[] shortenBulk($body)
 
 
 
@@ -76,10 +76,10 @@ $apiInstance = new ZingleApi\UrlShortner\Api\V1Api(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$unknown_base_type = new \ZingleApi\UrlShortner\Model\UNKNOWN_BASE_TYPE(); // \ZingleApi\UrlShortner\Model\UNKNOWN_BASE_TYPE | 
+$body = new \ZingleApi\UrlShortner\Model\BulkShortenRequest(); // \ZingleApi\UrlShortner\Model\BulkShortenRequest | 
 
 try {
-    $result = $apiInstance->shortenBulk($unknown_base_type);
+    $result = $apiInstance->shortenBulk($body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling V1Api->shortenBulk: ', $e->getMessage(), PHP_EOL;
@@ -91,7 +91,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **unknown_base_type** | [**\ZingleApi\UrlShortner\Model\UNKNOWN_BASE_TYPE**](../Model/UNKNOWN_BASE_TYPE.md)|  | [optional]
+ **body** | **\ZingleApi\UrlShortner\Model\BulkShortenRequest**|  | [optional]
 
 ### Return type
 

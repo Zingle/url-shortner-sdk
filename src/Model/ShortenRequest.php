@@ -1,6 +1,6 @@
 <?php
 /**
- * ShortUrl
+ * ShortenRequest
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \ZingleApi\UrlShortner\ObjectSerializer;
 
 /**
- * ShortUrl Class Doc Comment
+ * ShortenRequest Class Doc Comment
  *
  * @category Class
  * @package  ZingleApi\UrlShortner
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class ShortUrl implements ModelInterface, ArrayAccess
+class ShortenRequest implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class ShortUrl implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ShortUrl';
+    protected static $openAPIModelName = 'ShortenRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +57,8 @@ class ShortUrl implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'url' => 'string',
         'target_url' => 'string',
-        'vendor_url' => '\ZingleApi\UrlShortner\Model\VendorUrl'
+        'vendor' => '\ZingleApi\UrlShortner\Model\Vendor'
     ];
 
     /**
@@ -68,9 +67,8 @@ class ShortUrl implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'url' => null,
         'target_url' => null,
-        'vendor_url' => null
+        'vendor' => null
     ];
 
     /**
@@ -100,9 +98,8 @@ class ShortUrl implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'url' => 'url',
         'target_url' => 'targetUrl',
-        'vendor_url' => 'vendorUrl'
+        'vendor' => 'vendor'
     ];
 
     /**
@@ -111,9 +108,8 @@ class ShortUrl implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'url' => 'setUrl',
         'target_url' => 'setTargetUrl',
-        'vendor_url' => 'setVendorUrl'
+        'vendor' => 'setVendor'
     ];
 
     /**
@@ -122,9 +118,8 @@ class ShortUrl implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'url' => 'getUrl',
         'target_url' => 'getTargetUrl',
-        'vendor_url' => 'getVendorUrl'
+        'vendor' => 'getVendor'
     ];
 
     /**
@@ -187,9 +182,8 @@ class ShortUrl implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['url'] = isset($data['url']) ? $data['url'] : null;
         $this->container['target_url'] = isset($data['target_url']) ? $data['target_url'] : null;
-        $this->container['vendor_url'] = isset($data['vendor_url']) ? $data['vendor_url'] : null;
+        $this->container['vendor'] = isset($data['vendor']) ? $data['vendor'] : null;
     }
 
     /**
@@ -217,30 +211,6 @@ class ShortUrl implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets url
-     *
-     * @return string|null
-     */
-    public function getUrl()
-    {
-        return $this->container['url'];
-    }
-
-    /**
-     * Sets url
-     *
-     * @param string|null $url url
-     *
-     * @return $this
-     */
-    public function setUrl($url)
-    {
-        $this->container['url'] = $url;
-
-        return $this;
-    }
-
-    /**
      * Gets target_url
      *
      * @return string|null
@@ -265,25 +235,25 @@ class ShortUrl implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets vendor_url
+     * Gets vendor
      *
-     * @return \ZingleApi\UrlShortner\Model\VendorUrl|null
+     * @return \ZingleApi\UrlShortner\Model\Vendor|null
      */
-    public function getVendorUrl()
+    public function getVendor()
     {
-        return $this->container['vendor_url'];
+        return $this->container['vendor'];
     }
 
     /**
-     * Sets vendor_url
+     * Sets vendor
      *
-     * @param \ZingleApi\UrlShortner\Model\VendorUrl|null $vendor_url vendor_url
+     * @param \ZingleApi\UrlShortner\Model\Vendor|null $vendor vendor
      *
      * @return $this
      */
-    public function setVendorUrl($vendor_url)
+    public function setVendor($vendor)
     {
-        $this->container['vendor_url'] = $vendor_url;
+        $this->container['vendor'] = $vendor;
 
         return $this;
     }
