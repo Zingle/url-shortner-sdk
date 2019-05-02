@@ -88,6 +88,283 @@ class V1Api
     }
 
     /**
+     * Operation replace
+     *
+     * @param  \ZingleApi\UrlShortner\Model\ReplaceRequest $replace_request replace_request (optional)
+     *
+     * @throws \ZingleApi\UrlShortner\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \ZingleApi\UrlShortner\Model\ReplacedText[]|\ZingleApi\UrlShortner\Model\Error
+     */
+    public function replace($replace_request = null)
+    {
+        list($response) = $this->replaceWithHttpInfo($replace_request);
+        return $response;
+    }
+
+    /**
+     * Operation replaceWithHttpInfo
+     *
+     * @param  \ZingleApi\UrlShortner\Model\ReplaceRequest $replace_request (optional)
+     *
+     * @throws \ZingleApi\UrlShortner\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \ZingleApi\UrlShortner\Model\ReplacedText[]|\ZingleApi\UrlShortner\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function replaceWithHttpInfo($replace_request = null)
+    {
+        $request = $this->replaceRequest($replace_request);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            switch($statusCode) {
+                case 200:
+                    if ('\ZingleApi\UrlShortner\Model\ReplacedText[]' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\ZingleApi\UrlShortner\Model\ReplacedText[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\ZingleApi\UrlShortner\Model\Error' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\ZingleApi\UrlShortner\Model\Error', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\ZingleApi\UrlShortner\Model\ReplacedText[]';
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\ZingleApi\UrlShortner\Model\ReplacedText[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\ZingleApi\UrlShortner\Model\Error',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation replaceAsync
+     *
+     * 
+     *
+     * @param  \ZingleApi\UrlShortner\Model\ReplaceRequest $replace_request (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function replaceAsync($replace_request = null)
+    {
+        return $this->replaceAsyncWithHttpInfo($replace_request)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation replaceAsyncWithHttpInfo
+     *
+     * 
+     *
+     * @param  \ZingleApi\UrlShortner\Model\ReplaceRequest $replace_request (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function replaceAsyncWithHttpInfo($replace_request = null)
+    {
+        $returnType = '\ZingleApi\UrlShortner\Model\ReplacedText[]';
+        $request = $this->replaceRequest($replace_request);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'replace'
+     *
+     * @param  \ZingleApi\UrlShortner\Model\ReplaceRequest $replace_request (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function replaceRequest($replace_request = null)
+    {
+
+        $resourcePath = '/v1/replace';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // body params
+        $_tempBody = null;
+        if (isset($replace_request)) {
+            $_tempBody = $replace_request;
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($_tempBody));
+            } else {
+                $httpBody = $_tempBody;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation shorten
      *
      * @param  \ZingleApi\UrlShortner\Model\ShortenRequest $body body (optional)
@@ -367,30 +644,30 @@ class V1Api
     /**
      * Operation shortenBulk
      *
-     * @param  \ZingleApi\UrlShortner\Model\BulkShortenRequest $body body (optional)
+     * @param  \ZingleApi\UrlShortner\Model\BulkShortenRequest $bulk_shorten_request bulk_shorten_request (optional)
      *
      * @throws \ZingleApi\UrlShortner\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \ZingleApi\UrlShortner\Model\ShortUrl[]|\ZingleApi\UrlShortner\Model\Error
      */
-    public function shortenBulk($body = null)
+    public function shortenBulk($bulk_shorten_request = null)
     {
-        list($response) = $this->shortenBulkWithHttpInfo($body);
+        list($response) = $this->shortenBulkWithHttpInfo($bulk_shorten_request);
         return $response;
     }
 
     /**
      * Operation shortenBulkWithHttpInfo
      *
-     * @param  \ZingleApi\UrlShortner\Model\BulkShortenRequest $body (optional)
+     * @param  \ZingleApi\UrlShortner\Model\BulkShortenRequest $bulk_shorten_request (optional)
      *
      * @throws \ZingleApi\UrlShortner\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \ZingleApi\UrlShortner\Model\ShortUrl[]|\ZingleApi\UrlShortner\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function shortenBulkWithHttpInfo($body = null)
+    public function shortenBulkWithHttpInfo($bulk_shorten_request = null)
     {
-        $request = $this->shortenBulkRequest($body);
+        $request = $this->shortenBulkRequest($bulk_shorten_request);
 
         try {
             $options = $this->createHttpClientOption();
@@ -490,14 +767,14 @@ class V1Api
      *
      * 
      *
-     * @param  \ZingleApi\UrlShortner\Model\BulkShortenRequest $body (optional)
+     * @param  \ZingleApi\UrlShortner\Model\BulkShortenRequest $bulk_shorten_request (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function shortenBulkAsync($body = null)
+    public function shortenBulkAsync($bulk_shorten_request = null)
     {
-        return $this->shortenBulkAsyncWithHttpInfo($body)
+        return $this->shortenBulkAsyncWithHttpInfo($bulk_shorten_request)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -510,15 +787,15 @@ class V1Api
      *
      * 
      *
-     * @param  \ZingleApi\UrlShortner\Model\BulkShortenRequest $body (optional)
+     * @param  \ZingleApi\UrlShortner\Model\BulkShortenRequest $bulk_shorten_request (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function shortenBulkAsyncWithHttpInfo($body = null)
+    public function shortenBulkAsyncWithHttpInfo($bulk_shorten_request = null)
     {
         $returnType = '\ZingleApi\UrlShortner\Model\ShortUrl[]';
-        $request = $this->shortenBulkRequest($body);
+        $request = $this->shortenBulkRequest($bulk_shorten_request);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -557,12 +834,12 @@ class V1Api
     /**
      * Create request for operation 'shortenBulk'
      *
-     * @param  \ZingleApi\UrlShortner\Model\BulkShortenRequest $body (optional)
+     * @param  \ZingleApi\UrlShortner\Model\BulkShortenRequest $bulk_shorten_request (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function shortenBulkRequest($body = null)
+    protected function shortenBulkRequest($bulk_shorten_request = null)
     {
 
         $resourcePath = '/v1/bulk';
@@ -576,8 +853,8 @@ class V1Api
 
         // body params
         $_tempBody = null;
-        if (isset($body)) {
-            $_tempBody = $body;
+        if (isset($bulk_shorten_request)) {
+            $_tempBody = $bulk_shorten_request;
         }
 
         if ($multipart) {
