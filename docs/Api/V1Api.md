@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **replace**
-> \ZingleApi\UrlShortner\Model\ReplacedText[] replace($replace_request)
+> \ZingleApi\UrlShortner\Model\ReplacedText replace($replace_request)
 
 
 
@@ -46,7 +46,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\ZingleApi\UrlShortner\Model\ReplacedText[]**](../Model/ReplacedText.md)
+[**\ZingleApi\UrlShortner\Model\ReplacedText**](../Model/ReplacedText.md)
 
 ### Authorization
 

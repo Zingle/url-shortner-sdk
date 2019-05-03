@@ -94,7 +94,7 @@ class V1Api
      *
      * @throws \ZingleApi\UrlShortner\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \ZingleApi\UrlShortner\Model\ReplacedText[]|\ZingleApi\UrlShortner\Model\Error
+     * @return \ZingleApi\UrlShortner\Model\ReplacedText|\ZingleApi\UrlShortner\Model\Error
      */
     public function replace($replace_request = null)
     {
@@ -109,7 +109,7 @@ class V1Api
      *
      * @throws \ZingleApi\UrlShortner\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \ZingleApi\UrlShortner\Model\ReplacedText[]|\ZingleApi\UrlShortner\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \ZingleApi\UrlShortner\Model\ReplacedText|\ZingleApi\UrlShortner\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
     public function replaceWithHttpInfo($replace_request = null)
     {
@@ -146,14 +146,14 @@ class V1Api
             $responseBody = $response->getBody();
             switch($statusCode) {
                 case 200:
-                    if ('\ZingleApi\UrlShortner\Model\ReplacedText[]' === '\SplFileObject') {
+                    if ('\ZingleApi\UrlShortner\Model\ReplacedText' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
                         $content = $responseBody->getContents();
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\ZingleApi\UrlShortner\Model\ReplacedText[]', []),
+                        ObjectSerializer::deserialize($content, '\ZingleApi\UrlShortner\Model\ReplacedText', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -171,7 +171,7 @@ class V1Api
                     ];
             }
 
-            $returnType = '\ZingleApi\UrlShortner\Model\ReplacedText[]';
+            $returnType = '\ZingleApi\UrlShortner\Model\ReplacedText';
             $responseBody = $response->getBody();
             if ($returnType === '\SplFileObject') {
                 $content = $responseBody; //stream goes to serializer
@@ -190,7 +190,7 @@ class V1Api
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\ZingleApi\UrlShortner\Model\ReplacedText[]',
+                        '\ZingleApi\UrlShortner\Model\ReplacedText',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -240,7 +240,7 @@ class V1Api
      */
     public function replaceAsyncWithHttpInfo($replace_request = null)
     {
-        $returnType = '\ZingleApi\UrlShortner\Model\ReplacedText[]';
+        $returnType = '\ZingleApi\UrlShortner\Model\ReplacedText';
         $request = $this->replaceRequest($replace_request);
 
         return $this->client
