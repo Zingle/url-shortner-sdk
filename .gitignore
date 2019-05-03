@@ -1,3 +1,4 @@
 node_modules/
 .swagger-codegen/
 .openapi-generator/
+vendor/

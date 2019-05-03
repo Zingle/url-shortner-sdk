@@ -60,7 +60,7 @@ class ReplaceRequest implements ModelInterface, ArrayAccess
         'target_urls' => 'array',
         'vendor' => '\ZingleApi\UrlShortner\Model\Vendor',
         'text' => 'string',
-        'prefer_vedor' => 'bool'
+        'prefer_vendor' => 'bool'
     ];
 
     /**
@@ -72,7 +72,7 @@ class ReplaceRequest implements ModelInterface, ArrayAccess
         'target_urls' => null,
         'vendor' => null,
         'text' => null,
-        'prefer_vedor' => null
+        'prefer_vendor' => null
     ];
 
     /**
@@ -105,7 +105,7 @@ class ReplaceRequest implements ModelInterface, ArrayAccess
         'target_urls' => 'targetUrls',
         'vendor' => 'vendor',
         'text' => 'text',
-        'prefer_vedor' => 'preferVedor'
+        'prefer_vendor' => 'preferVendor'
     ];
 
     /**
@@ -117,7 +117,7 @@ class ReplaceRequest implements ModelInterface, ArrayAccess
         'target_urls' => 'setTargetUrls',
         'vendor' => 'setVendor',
         'text' => 'setText',
-        'prefer_vedor' => 'setPreferVedor'
+        'prefer_vendor' => 'setPreferVendor'
     ];
 
     /**
@@ -129,7 +129,7 @@ class ReplaceRequest implements ModelInterface, ArrayAccess
         'target_urls' => 'getTargetUrls',
         'vendor' => 'getVendor',
         'text' => 'getText',
-        'prefer_vedor' => 'getPreferVedor'
+        'prefer_vendor' => 'getPreferVendor'
     ];
 
     /**
@@ -195,7 +195,7 @@ class ReplaceRequest implements ModelInterface, ArrayAccess
         $this->container['target_urls'] = isset($data['target_urls']) ? $data['target_urls'] : null;
         $this->container['vendor'] = isset($data['vendor']) ? $data['vendor'] : null;
         $this->container['text'] = isset($data['text']) ? $data['text'] : null;
-        $this->container['prefer_vedor'] = isset($data['prefer_vedor']) ? $data['prefer_vedor'] : null;
+        $this->container['prefer_vendor'] = isset($data['prefer_vendor']) ? $data['prefer_vendor'] : null;
     }
 
     /**
@@ -295,25 +295,25 @@ class ReplaceRequest implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets prefer_vedor
+     * Gets prefer_vendor
      *
      * @return bool|null
      */
-    public function getPreferVedor()
+    public function getPreferVendor()
     {
-        return $this->container['prefer_vedor'];
+        return $this->container['prefer_vendor'];
     }
 
     /**
-     * Sets prefer_vedor
+     * Sets prefer_vendor
      *
-     * @param bool|null $prefer_vedor prefer_vedor
+     * @param bool|null $prefer_vendor prefer_vendor
      *
      * @return $this
      */
-    public function setPreferVedor($prefer_vedor)
+    public function setPreferVendor($prefer_vendor)
     {
-        $this->container['prefer_vedor'] = $prefer_vedor;
+        $this->container['prefer_vendor'] = $prefer_vendor;
 
         return $this;
     }
